@@ -1,0 +1,25 @@
+{
+  "name": "vue3-boilerplate",
+  "version": "1.0.0",
+  "description": "A Vue 3 Starter Boilerplate with Vue Router 4, Vuex 4, Typescript, Vite, Rollup, Webpack, Prettier and More.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jamie-Yang/vue3-boilerplate.git"
+  },
+  "keywords": [
+    "Vue3"
+  ],
+  "author": "Jamie Yang",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Jamie-Yang/vue3-boilerplate/issues"
+  },
+  "homepage": "https://github.com/Jamie-Yang/vue3-boilerplate#readme",
+  "devDependencies": {
+    "prettier": "2.0.5"
+  }
+}
