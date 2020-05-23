@@ -19,7 +19,24 @@
     "url": "https://github.com/Jamie-Yang/vue3-boilerplate/issues"
   },
   "homepage": "https://github.com/Jamie-Yang/vue3-boilerplate#readme",
+  "dependencies": {
+    "core-js": "^3.6.5",
+    "vue": "^3.0.0-beta.14",
+    "vue-router": "^4.0.0-alpha.12",
+    "vuex": "^4.0.0-beta.2"
+  },
   "devDependencies": {
-    "prettier": "2.0.5"
+    "@babel/core": "^7.9.6",
+    "@typescript-eslint/eslint-plugin": "^3.0.0",
+    "@typescript-eslint/parser": "^3.0.0",
+    "@vue/compiler-sfc": "^3.0.0-beta.14",
+    "eslint": "^7.0.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-prettier": "^3.1.3",
+    "eslint-plugin-vue": "^7.0.0-alpha.3",
+    "prettier": "2.0.5",
+    "sass": "^1.26.5",
+    "typescript": "^3.9.3",
+    "vue-eslint-parser": "^6.0.0-beta.0"
   }
 }
