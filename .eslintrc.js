@@ -23,7 +23,7 @@ module.exports = {
     'eslint:recommended',
     'plugin:@typescript-eslint/eslint-recommended',
     'plugin:@typescript-eslint/recommended',
-    'prettier',
+    'plugin:prettier/recommended',
     'prettier/vue',
     'prettier/@typescript-eslint',
   ],
@@ -31,8 +31,6 @@ module.exports = {
   plugins: ['vue', '@typescript-eslint'],
 
   rules: {
-    'prettier/prettier': 'error',
-
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
 
@@ -42,4 +40,13 @@ module.exports = {
     // conflict with Prettier
     // 'vue/html-indent': 'off',
   },
+
+  overrides: [
+    {
+      files: ['*.js'],
+      rules: {
+        '@typescript-eslint/no-var-requires': 'off',
+      },
+    },
+  ],
 }

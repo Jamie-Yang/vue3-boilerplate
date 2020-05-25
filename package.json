@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "lint": "eslint --ext .js,.vue src",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "webpack-dev-server --inline --progress --color --config build/webpack.dev.conf.js"
   },
   "repository": {
     "type": "git",
@@ -32,6 +32,7 @@
     "@typescript-eslint/eslint-plugin": "^3.0.0",
     "@typescript-eslint/parser": "^3.0.0",
     "@vue/compiler-sfc": "^3.0.0-beta.14",
+    "case-sensitive-paths-webpack-plugin": "^2.3.0",
     "css-loader": "^3.5.3",
     "eslint": "^7.0.0",
     "eslint-config-prettier": "^6.11.0",
@@ -40,7 +41,9 @@
     "eslint-plugin-prettier": "^3.1.3",
     "eslint-plugin-vue": "^7.0.0-alpha.3",
     "file-loader": "^6.0.0",
+    "friendly-errors-webpack-plugin": "^1.7.0",
     "mini-css-extract-plugin": "^0.9.0",
+    "pnp-webpack-plugin": "^1.6.4",
     "prettier": "2.0.5",
     "sass": "^1.26.5",
     "sass-loader": "^8.0.2",
@@ -48,6 +51,10 @@
     "typescript": "^3.9.3",
     "url-loader": "^4.1.0",
     "vue-eslint-parser": "^6.0.0-beta.0",
-    "webpack": "^5.0.0-beta.16"
+    "vue-loader": "^16.0.0-beta.2",
+    "webpack": "^5.0.0-beta.16",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.11.0",
+    "webpack-merge": "^4.2.2"
   }
 }

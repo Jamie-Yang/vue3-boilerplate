@@ -1,9 +1,15 @@
 'use strict'
 const path = require('path')
-const VueLoaderPlugin = require('vue-loader/lib/plugin')
-const config = require('./config')
+const { VueLoaderPlugin } = require('vue-loader')
+const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin')
+const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
+const TerserPlugin = require('terser-webpack-plugin')
+const PnpWebpackPlugin = require(`pnp-webpack-plugin`)
+
 const genStyleRules = require('./utils/genStyleRules')
 const getAssetPath = require('./utils/getAssetPath')
+const terserOptions = require('./terserOptions')
+const config = require('./config')
 
 const resolve = (dir) => path.join(__dirname, '..', dir)
 
@@ -32,9 +38,23 @@ const webpackConfig = {
     alias: {
       '@': resolve('src'),
     },
+    plugins: [PnpWebpackPlugin],
   },
 
-  plugins: [new VueLoaderPlugin()],
+  resolveLoader: {
+    plugins: [PnpWebpackPlugin.moduleLoader(module)],
+  },
+
+  optimization: {
+    minimize: true,
+    minimizer: [new TerserPlugin(terserOptions())],
+  },
+
+  plugins: [
+    new VueLoaderPlugin(),
+    new CaseSensitivePathsPlugin(),
+    new FriendlyErrorsWebpackPlugin(),
+  ],
 
   module: {
     noParse: /^(vue|vue-router|vuex)$/,
@@ -59,13 +79,13 @@ const webpackConfig = {
 
       {
         test: /\.m?jsx?$/,
-        exclude: (filePath) => {
+        exclude: (file) => {
           // always transpile js in vue files
-          if (/\.vue\.jsx?$/.test(filePath)) {
+          if (/\.vue\.jsx?$/.test(file)) {
             return false
           }
           // Don't transpile node_modules
-          return /node_modules/.test(filePath)
+          return /node_modules/.test(file)
         },
         use: [
           'cache-loader',
@@ -105,22 +125,6 @@ const webpackConfig = {
         options: genUrlLoaderOptions('fonts'),
       },
     ],
-  },
-
-  node: {
-    // prevent webpack from injecting useless setImmediate polyfill because Vue
-    // source contains it (although only uses it if it's native).
-    setImmediate: false,
-    // process is injected via DefinePlugin, although some 3rd party
-    // libraries may require a mock to work properly (#934)
-    process: 'mock',
-    // prevent webpack from injecting mocks to Node native modules
-    // that does not make sense for the client
-    dgram: 'empty',
-    fs: 'empty',
-    net: 'empty',
-    tls: 'empty',
-    child_process: 'empty',
   },
 }
 

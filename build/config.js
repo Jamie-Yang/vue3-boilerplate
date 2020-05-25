@@ -3,6 +3,7 @@ const path = require('path')
 
 const devConfig = {
   publicPath: '/',
+  port: 8080,
 }
 
 const buildConfig = {
