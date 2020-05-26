@@ -16,8 +16,6 @@ module.exports = {
         regenerator: true, // TODO: need test
       },
     ],
-    '@babel/plugin-proposal-export-namespace-from',
-    '@babel/plugin-proposal-export-default-from',
   ],
   exclude: [/core-js/],
 }

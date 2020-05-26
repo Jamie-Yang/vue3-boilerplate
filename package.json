@@ -5,14 +5,16 @@
   "main": "index.js",
   "scripts": {
     "lint": "eslint --ext .js,.vue src",
-    "dev": "webpack-dev-server --inline --progress --color --config build/webpack.dev.conf.js"
+    "dev": "webpack-dev-server -c build/webpack.dev.conf.js",
+    "build": "webpack -c build/webpack.prod.conf.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Jamie-Yang/vue3-boilerplate.git"
   },
   "keywords": [
-    "Vue3"
+    "Vue3",
+    "boilerplate"
   ],
   "author": "Jamie Yang",
   "license": "MIT",
@@ -29,10 +31,16 @@
   },
   "devDependencies": {
     "@babel/core": "^7.9.6",
+    "@babel/plugin-transform-runtime": "^7.9.6",
+    "@babel/preset-env": "^7.9.6",
     "@typescript-eslint/eslint-plugin": "^3.0.0",
     "@typescript-eslint/parser": "^3.0.0",
     "@vue/compiler-sfc": "^3.0.0-beta.14",
+    "autoprefixer": "^9.8.0",
+    "babel-loader": "^8.1.0",
+    "cache-loader": "^4.1.0",
     "case-sensitive-paths-webpack-plugin": "^2.3.0",
+    "copy-webpack-plugin": "^6.0.1",
     "css-loader": "^3.5.3",
     "eslint": "^7.0.0",
     "eslint-config-prettier": "^6.11.0",
@@ -42,18 +50,24 @@
     "eslint-plugin-vue": "^7.0.0-alpha.3",
     "file-loader": "^6.0.0",
     "friendly-errors-webpack-plugin": "^1.7.0",
+    "html-webpack-plugin": "^4.3.0",
     "mini-css-extract-plugin": "^0.9.0",
     "pnp-webpack-plugin": "^1.6.4",
+    "postcss-loader": "^3.0.0",
+    "preload-webpack-plugin": "^2.3.0",
     "prettier": "2.0.5",
     "sass": "^1.26.5",
     "sass-loader": "^8.0.2",
     "style-loader": "^1.2.1",
+    "thread-loader": "^2.1.3",
+    "ts-loader": "^7.0.5",
     "typescript": "^3.9.3",
     "url-loader": "^4.1.0",
     "vue-eslint-parser": "^6.0.0-beta.0",
     "vue-loader": "^16.0.0-beta.2",
+    "vue-style-loader": "^4.1.2",
     "webpack": "^5.0.0-beta.16",
-    "webpack-cli": "^3.3.11",
+    "webpack-cli": "^4.0.0-beta.8",
     "webpack-dev-server": "^3.11.0",
     "webpack-merge": "^4.2.2"
   }

@@ -1,18 +1,29 @@
 'use strict'
-
 // const url = require('url')
 // const webpack = require('webpack')
 // const WebpackDevServer = require('webpack-dev-server')
 // const portfinder = require('portfinder')
+const path = require('path')
 const merge = require('webpack-merge')
 
 const baseWebpackConfig = require('./webpack.base.conf')
 const config = require('./config')
 
-const webpackConfig = merge(baseWebpackConfig, {
+module.exports = merge(baseWebpackConfig, {
+  mode: 'development',
+
   devtool: 'eval-cheap-module-source-map',
+
   devServer: {
     clientLogLevel: 'silent',
+    historyApiFallback: {
+      rewrites: [
+        {
+          from: /.*/,
+          to: path.posix.join(config.dev.publicPath, 'index.html'),
+        },
+      ],
+    },
     contentBase: './dist',
     hot: true,
     compress: false,
@@ -21,8 +32,6 @@ const webpackConfig = merge(baseWebpackConfig, {
     host: '0.0.0.0',
     port: config.dev.port,
     https: false,
-    open: true,
+    open: false,
   },
 })
-
-module.exports = webpackConfig
