@@ -1,6 +1,6 @@
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
-module.exports = (options = {}) => {
+const genStyleRules = (options = {}) => {
   const isProd = process.env.NODE_ENV === 'production'
 
   const { sourceMap = false } = options
@@ -57,4 +57,10 @@ module.exports = (options = {}) => {
     createCSSRule(/\.p(ost)?css$/),
     createCSSRule(/\.scss$/, 'sass-loader'),
   ]
+}
+
+module.exports = {
+  module: {
+    rules: genStyleRules(),
+  },
 }

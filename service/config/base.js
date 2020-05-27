@@ -1,5 +1,4 @@
 'use strict'
-const path = require('path')
 const { VueLoaderPlugin } = require('vue-loader')
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
@@ -8,29 +7,25 @@ const PnpPlugin = require(`pnp-webpack-plugin`)
 const HTMLPlugin = require('html-webpack-plugin')
 const PreloadPlugin = require('preload-webpack-plugin')
 const CopyPlugin = require('copy-webpack-plugin')
+// const ForkTsCheckerPlugin = require('fork-ts-checker-webpack-plugin')
 
-const genStyleRules = require('./utils/genStyleRules')
-const getAssetPath = require('./utils/getAssetPath')
+const paths = require('../utils/paths')
 
-const config = require('./config')
+const config = require('../project.config')
 const terserOptions = require('./terserOptions')
-
-const resolve = (dir) => path.join(__dirname, '..', dir)
 
 const genUrlLoaderOptions = (dir) => ({
   limit: 8192,
-  name: getAssetPath(`${dir}/[name].[hash:8].[ext]`),
+  name: paths.getAssetPath(`${dir}/[name].[hash:8].[ext]`),
 })
 
 const genOutputFileName = () => {
-  console.log(process.env.NODE_ENV)
-
   const isProd = process.env.NODE_ENV === 'production'
-  return getAssetPath(`js/[name]${isProd ? '.[contenthash:8]' : ''}.js`)
+  return paths.getAssetPath(`js/[name]${isProd ? '.[contenthash:8]' : ''}.js`)
 }
 
 module.exports = {
-  context: resolve(''),
+  context: process.cwd(),
 
   entry: {
     app: './src/main.ts',
@@ -45,7 +40,7 @@ module.exports = {
 
   resolve: {
     alias: {
-      '@': resolve('src'),
+      '@': paths.resolve('src'),
     },
     extensions: ['.ts', '.tsx', '.js', '.jsx', '.vue', '.json'],
     plugins: [PnpPlugin],
@@ -82,7 +77,7 @@ module.exports = {
     new CaseSensitivePathsPlugin(),
     new FriendlyErrorsPlugin(),
     new HTMLPlugin({
-      template: resolve('/public/index.html'),
+      template: paths.resolve('public/index.html'),
     }),
     // new PreloadPlugin({
     //   rel: 'preload',
@@ -96,7 +91,7 @@ module.exports = {
     new CopyPlugin({
       patterns: [
         {
-          from: resolve('public'),
+          from: paths.resolve('public'),
           to: config.outputDir,
           toType: 'dir',
           globOptions: {
@@ -111,17 +106,17 @@ module.exports = {
     noParse: /^(vue|vue-router|vuex|vuex-router-sync)$/,
 
     rules: [
-      // {
-      //   test: /\.(vue|(j|t)sx?)$/,
-      //   loader: 'eslint-loader',
-      //   enforce: 'pre',
-      //   exclude: /node_modules/,
-      //   options: {
-      //     cache: true,
-      //     extensions: ['.ts', '.tsx', '.js', '.jsx', '.vue'],
-      //     formatter: require('eslint-friendly-formatter'),
-      //   },
-      // },
+      {
+        test: /\.(vue|(j|t)sx?)$/,
+        loader: 'eslint-loader',
+        enforce: 'pre',
+        exclude: /node_modules/,
+        options: {
+          cache: true,
+          extensions: ['.ts', '.tsx', '.js', '.jsx', '.vue'],
+          formatter: require('eslint-friendly-formatter'),
+        },
+      },
 
       {
         test: /\.vue$/,
@@ -183,8 +178,6 @@ module.exports = {
         loader: 'url-loader',
         options: genUrlLoaderOptions('fonts'),
       },
-
-      ...genStyleRules(),
     ],
   },
 }

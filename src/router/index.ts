@@ -1,7 +1,7 @@
-import { RouteRecordRaw, createRouter, createWebHashHistory } from 'vue-router'
+import { RouteConfig, createRouter, createWebHashHistory } from 'vue-router'
 import Home from '../views/Home.vue'
 
-const routes: Array<RouteRecordRaw> = [
+const routes: Array<RouteConfig> = [
   {
     path: '/',
     name: 'Home',

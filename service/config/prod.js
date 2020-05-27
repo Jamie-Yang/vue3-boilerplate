@@ -2,10 +2,11 @@
 const webpack = require('webpack')
 const merge = require('webpack-merge')
 
-const baseWebpackConfig = require('./webpack.base.conf')
-const config = require('./config')
+const baseWebpackConfig = require('./base')
+const cssWebpackConfig = require('./css')
+const config = require('../project.config')
 
-module.exports = merge(baseWebpackConfig, {
+module.exports = merge(baseWebpackConfig, cssWebpackConfig, {
   mode: 'production',
 
   output: {
