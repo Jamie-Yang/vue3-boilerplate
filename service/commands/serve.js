@@ -1,35 +1,24 @@
-const { info } = require('../utils/logger')
+const os = require('os')
 const path = require('path')
 const chalk = require('chalk')
 const webpack = require('webpack')
 const WebpackDevServer = require('webpack-dev-server')
 
+const { info } = require('../utils/logger')
+const paths = require('../utils/paths')
+
 const config = require('../project.config')
 const devWebpackConfig = require('../config/dev')
+
+const devServerOptions = devWebpackConfig.devServer
+const protocol = devServerOptions.https ? 'https' : 'http'
+const host = devServerOptions.host || '0.0.0.0'
+const port = devServerOptions.port || 8080
 
 info('Starting development server...')
 
 const compiler = webpack(devWebpackConfig)
-const server = new WebpackDevServer(compiler, {
-  clientLogLevel: 'info',
-  historyApiFallback: {
-    rewrites: [
-      {
-        from: /.*/,
-        to: path.posix.join(config.dev.publicPath, 'index.html'),
-      },
-    ],
-  },
-  hot: true,
-  contentBase: false, // since we use CopyWebpackPlugin.
-  compress: true,
-  publicPath: config.dev.publicPath,
-  overlay: { warnings: false, errors: true },
-  host: '0.0.0.0',
-  port: config.dev.port,
-  https: false,
-  open: true,
-})
+const server = new WebpackDevServer(compiler, devWebpackConfig.devServer)
 
 ;['SIGINT', 'SIGTERM'].forEach((signal) => {
   process.on(signal, () => {
@@ -39,25 +28,33 @@ const server = new WebpackDevServer(compiler, {
   })
 })
 
+function getLocalIP() {
+  const interfaces = os.networkInterfaces()
+
+  for (const devName in interfaces) {
+    const iface = interfaces[devName]
+    for (let i = 0; i < iface.length; i++) {
+      const alias = iface[i]
+      if (alias.family === 'IPv4' && alias.address !== '127.0.0.1' && !alias.internal) {
+        return alias.address
+      }
+    }
+  }
+}
+
 compiler.hooks.done.tap('serve', (stats) => {
   if (stats.hasErrors()) {
     return
   }
   console.log()
   console.log(`  App running at:`)
-  // console.log(`  - Local:   ${chalk.cyan(urls.localUrlForTerminal)} ${copied}`)
-  // console.log(`  - Network: ${chalk.cyan(networkUrl)}`)
+  console.log(`  - Local:   ${chalk.cyan(`localhost:${port}`)}`)
+  console.log(`  - Network: ${chalk.cyan(getLocalIP())}`)
+  console.log()
 })
 
-function genHistoryApiFallbackRewrites(baseUrl, pages = {}) {
-  const path = require('path')
-  const multiPageRewrites = Object.keys(pages)
-    // sort by length in reversed order to avoid overrides
-    // eg. 'page11' should appear in front of 'page1'
-    .sort((a, b) => b.length - a.length)
-    .map((name) => ({
-      from: new RegExp(`^/${name}`),
-      to: path.posix.join(baseUrl, pages[name].filename || `${name}.html`),
-    }))
-  return [...multiPageRewrites, { from: /./, to: path.posix.join(baseUrl, 'index.html') }]
-}
+server.listen(port, host, (err) => {
+  if (err) {
+    process.exit(0)
+  }
+})

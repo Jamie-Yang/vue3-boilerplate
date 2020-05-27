@@ -1,12 +1,11 @@
 'use strict'
 const rm = require('rimraf')
 const path = require('path')
-const chalk = require('chalk')
 const webpack = require('webpack')
+const { error, done } = require('../utils/logger')
 
 const webpackConfig = require('../config/prod')
 const config = require('../project.config')
-console.log(process.cwd())
 
 rm(path.join(config.outputDir), (err) => {
   if (err) throw err
@@ -25,10 +24,10 @@ rm(path.join(config.outputDir), (err) => {
     )
 
     if (stats.hasErrors()) {
-      console.log(chalk.red('  Build failed with errors.\n'))
+      error('Build failed with errors.\n')
       process.exit(1)
     }
 
-    console.log(chalk.cyan('  Build complete.\n'))
+    done('Build complete.\n')
   })
 })

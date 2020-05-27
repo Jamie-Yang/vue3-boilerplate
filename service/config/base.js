@@ -2,17 +2,14 @@
 const { VueLoaderPlugin } = require('vue-loader')
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
-const TerserPlugin = require('terser-webpack-plugin')
 const PnpPlugin = require(`pnp-webpack-plugin`)
 const HTMLPlugin = require('html-webpack-plugin')
-const PreloadPlugin = require('preload-webpack-plugin')
 const CopyPlugin = require('copy-webpack-plugin')
 // const ForkTsCheckerPlugin = require('fork-ts-checker-webpack-plugin')
 
 const paths = require('../utils/paths')
 
 const config = require('../project.config')
-const terserOptions = require('./terserOptions')
 
 const genUrlLoaderOptions = (dir) => ({
   limit: 8192,
@@ -50,28 +47,6 @@ module.exports = {
     plugins: [PnpPlugin.moduleLoader(module)],
   },
 
-  optimization: {
-    minimize: true,
-    minimizer: [new TerserPlugin(terserOptions())],
-    splitChunks: {
-      cacheGroups: {
-        vendors: {
-          name: `chunk-vendors`,
-          test: /[\\/]node_modules[\\/]/,
-          priority: -10,
-          chunks: 'initial',
-        },
-        common: {
-          name: `chunk-common`,
-          minChunks: 2,
-          priority: -20,
-          chunks: 'initial',
-          reuseExistingChunk: true,
-        },
-      },
-    },
-  },
-
   plugins: [
     new VueLoaderPlugin(),
     new CaseSensitivePathsPlugin(),
@@ -79,15 +54,6 @@ module.exports = {
     new HTMLPlugin({
       template: paths.resolve('public/index.html'),
     }),
-    // new PreloadPlugin({
-    //   rel: 'preload',
-    //   include: 'initial',
-    //   fileBlacklist: [/\.map$/, /hot-update\.js$/],
-    // }),
-    // new PreloadPlugin({
-    //   rel: 'prefetch',
-    //   include: 'asyncChunks',
-    // }),
     new CopyPlugin({
       patterns: [
         {
@@ -123,18 +89,18 @@ module.exports = {
         use: ['cache-loader', 'vue-loader'],
       },
 
-      {
-        test: /\.m?jsx?$/,
-        exclude: (file) => {
-          // always transpile js in vue files
-          if (/\.vue\.jsx?$/.test(file)) {
-            return false
-          }
-          // Don't transpile node_modules
-          return /node_modules/.test(file)
-        },
-        use: ['cache-loader', 'thread-loader', 'babel-loader'],
-      },
+      // {
+      //   test: /\.m?jsx?$/,
+      //   exclude: (file) => {
+      //     // always transpile js in vue files
+      //     if (/\.vue\.jsx?$/.test(file)) {
+      //       return false
+      //     }
+      //     // Don't transpile node_modules
+      //     return /node_modules/.test(file)
+      //   },
+      //   use: ['cache-loader', 'thread-loader', 'babel-loader'],
+      // },
 
       {
         test: /\.tsx?$/,
