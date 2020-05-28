@@ -3,15 +3,20 @@ const rm = require('rimraf')
 const webpack = require('webpack')
 
 const { error, done } = require('../utils/logger')
+const { logWithSpinner, stopSpinner } = require('../utils/spinner')
 const paths = require('../utils/paths')
 
 const webpackConfig = require('../config/prod')
 const config = require('../project.config')
 
+logWithSpinner('Building for production...')
+
 rm(paths.resolve(config.outputDir), (err) => {
   if (err) throw err
 
   webpack(webpackConfig, (err, stats) => {
+    stopSpinner(false)
+
     if (err) throw err
 
     process.stdout.write(
