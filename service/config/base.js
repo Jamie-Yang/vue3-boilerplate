@@ -29,7 +29,7 @@ module.exports = {
   },
 
   output: {
-    path: config.outputDir,
+    path: paths.resolve(config.outputDir),
     publicPath: config.dev.publicPath,
     filename: genOutputFileName(),
     chunkFilename: genOutputFileName(),
@@ -58,7 +58,7 @@ module.exports = {
       patterns: [
         {
           from: paths.resolve('public'),
-          to: config.outputDir,
+          to: paths.resolve(config.outputDir),
           toType: 'dir',
           globOptions: {
             ignore: ['.DS_Store'],

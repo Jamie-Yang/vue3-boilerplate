@@ -30,7 +30,8 @@ module.exports = merge(baseWebpackConfig, cssWebpackConfig, {
     host: '0.0.0.0',
     port: config.dev.port,
     https: false,
-    open: true,
+    open: false,
+    noInfo: true,
   },
 
   plugins: [new webpack.HotModuleReplacementPlugin(), new webpack.ProgressPlugin()],
