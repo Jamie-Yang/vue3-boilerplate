@@ -21,7 +21,7 @@ module.exports = merge(baseWebpackConfig, cssWebpackConfig, {
     minimizer: [new TerserPlugin(terserOptions())],
     splitChunks: {
       cacheGroups: {
-        vendors: {
+        defaultVendors: {
           name: `chunk-vendors`,
           test: /[\\/]node_modules[\\/]/,
           priority: -10,
