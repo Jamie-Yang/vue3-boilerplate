@@ -2,7 +2,6 @@
 const { VueLoaderPlugin } = require('vue-loader')
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
-const PnpPlugin = require(`pnp-webpack-plugin`)
 const HTMLPlugin = require('html-webpack-plugin')
 const CopyPlugin = require('copy-webpack-plugin')
 // const ForkTsCheckerPlugin = require('fork-ts-checker-webpack-plugin')
@@ -40,11 +39,6 @@ module.exports = {
       '@': paths.resolve('src'),
     },
     extensions: ['.ts', '.tsx', '.js', '.jsx', '.vue', '.json'],
-    plugins: [PnpPlugin],
-  },
-
-  resolveLoader: {
-    plugins: [PnpPlugin.moduleLoader(module)],
   },
 
   plugins: [
