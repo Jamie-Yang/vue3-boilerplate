@@ -9,13 +9,6 @@ module.exports = {
       },
     ],
   ],
-  plugins: [
-    [
-      '@babel/plugin-transform-runtime',
-      {
-        regenerator: true, // TODO: need test
-      },
-    ],
-  ],
+  plugins: ['@babel/plugin-transform-runtime'],
   exclude: [/core-js/],
 }

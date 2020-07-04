@@ -1,8 +1,7 @@
 'use strict'
-const webpack = require('webpack')
 const merge = require('webpack-merge')
-const PreloadPlugin = require('preload-webpack-plugin')
 const TerserPlugin = require('terser-webpack-plugin')
+const PreloadPlugin = require('preload-webpack-plugin')
 
 const baseWebpackConfig = require('./base')
 const cssWebpackConfig = require('./css')
@@ -19,6 +18,7 @@ module.exports = merge(baseWebpackConfig, cssWebpackConfig, {
   optimization: {
     minimize: true,
     minimizer: [new TerserPlugin(terserOptions())],
+    moduleIds: 'deterministic',
     splitChunks: {
       cacheGroups: {
         defaultVendors: {
@@ -39,17 +39,14 @@ module.exports = merge(baseWebpackConfig, cssWebpackConfig, {
   },
 
   plugins: [
-    // new PreloadPlugin({
-    //   rel: 'preload',
-    //   include: 'initial',
-    //   fileBlacklist: [/\.map$/, /hot-update\.js$/],
-    // }),
-    // new PreloadPlugin({
-    //   rel: 'prefetch',
-    //   include: 'asyncChunks',
-    // }),
-    // new webpack.HashedModuleIdsPlugin({
-    //   hashDigest: 'hex',
-    // }),
+    new PreloadPlugin({
+      rel: 'preload',
+      include: 'initial',
+      fileBlacklist: [/\.map$/, /hot-update\.js$/],
+    }),
+    new PreloadPlugin({
+      rel: 'prefetch',
+      include: 'asyncChunks',
+    }),
   ],
 })
