@@ -1,4 +1,5 @@
 'use strict'
+
 const rm = require('rimraf')
 const webpack = require('webpack')
 

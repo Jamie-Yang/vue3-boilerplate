@@ -1,4 +1,5 @@
 'use strict'
+
 const { merge } = require('webpack-merge')
 const TerserPlugin = require('terser-webpack-plugin')
 const PreloadPlugin = require('preload-webpack-plugin')

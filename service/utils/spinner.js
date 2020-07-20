@@ -1,3 +1,5 @@
+'use strict'
+
 const ora = require('ora')
 const chalk = require('chalk')
 

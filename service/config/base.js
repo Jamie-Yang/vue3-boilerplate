@@ -1,4 +1,5 @@
 'use strict'
+
 const { VueLoaderPlugin } = require('vue-loader')
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')

@@ -1,4 +1,5 @@
 'use strict'
+
 const chalk = require('chalk')
 const webpack = require('webpack')
 const WebpackDevServer = require('webpack-dev-server')
