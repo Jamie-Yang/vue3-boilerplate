@@ -8,14 +8,14 @@
     "lint": "eslint --ext .js,.vue src"
   },
   "dependencies": {
-    "@babel/runtime": "^7.10.5",
+    "@babel/runtime": "^7.11.2",
     "core-js": "^3.6.5",
     "vue": "^3.0.0-rc.2",
     "vue-router": "^4.0.0-beta.2",
     "vuex": "^4.0.0-beta.2"
   },
   "devDependencies": {
-    "@babel/core": "^7.10.5",
+    "@babel/core": "^7.11.1",
     "@babel/plugin-transform-runtime": "^7.10.5",
     "@babel/preset-env": "^7.10.2",
     "@types/webpack-env": "^1.15.2",
