@@ -23,7 +23,6 @@ module.exports = merge(baseWebpackConfig, cssWebpackConfig, {
         },
       ],
     },
-    contentBase: './dist',
     hot: true,
     compress: false,
     publicPath: config.dev.publicPath,
