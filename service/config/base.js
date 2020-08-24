@@ -84,18 +84,18 @@ module.exports = {
         use: ['cache-loader', 'vue-loader'],
       },
 
-      // {
-      //   test: /\.m?jsx?$/,
-      //   exclude: (file) => {
-      //     // always transpile js in vue files
-      //     if (/\.vue\.jsx?$/.test(file)) {
-      //       return false
-      //     }
-      //     // Don't transpile node_modules
-      //     return /node_modules/.test(file)
-      //   },
-      //   use: ['cache-loader', 'thread-loader', 'babel-loader'],
-      // },
+      {
+        test: /\.m?jsx?$/,
+        exclude: (file) => {
+          // always transpile js in vue files
+          if (/\.vue\.jsx?$/.test(file)) {
+            return false
+          }
+          // Don't transpile node_modules
+          return /node_modules/.test(file)
+        },
+        use: ['cache-loader', 'thread-loader', 'babel-loader'],
+      },
 
       {
         test: /\.tsx?$/,
