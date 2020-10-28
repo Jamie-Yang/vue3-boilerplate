@@ -24,9 +24,6 @@ const genStyleRules = () => {
   }
   const extractPluginLoader = {
     loader: MiniCssExtractPlugin.loader,
-    options: {
-      hmr: !isProd,
-    },
   }
   const vueStyleLoader = {
     loader: 'vue-style-loader',
