@@ -2,7 +2,8 @@
 
 const { VueLoaderPlugin } = require('vue-loader')
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin')
-const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
+// const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
+const ESLintPlugin = require('eslint-webpack-plugin')
 const HTMLPlugin = require('html-webpack-plugin')
 const CopyPlugin = require('copy-webpack-plugin')
 // const ForkTsCheckerPlugin = require('fork-ts-checker-webpack-plugin')
@@ -43,9 +44,13 @@ module.exports = {
   },
 
   plugins: [
+    new ESLintPlugin({
+      extensions: ['.ts', '.tsx', '.js', '.jsx', '.vue'],
+      formatter: require('eslint-formatter-friendly'),
+    }),
     new VueLoaderPlugin(),
     new CaseSensitivePathsPlugin(),
-    new FriendlyErrorsPlugin(),
+    // new FriendlyErrorsPlugin(),
     new HTMLPlugin({
       template: paths.resolve('public/index.html'),
     }),
@@ -67,18 +72,6 @@ module.exports = {
     noParse: /^(vue|vue-router|vuex|vuex-router-sync)$/,
 
     rules: [
-      {
-        test: /\.(vue|(j|t)sx?)$/,
-        loader: 'eslint-loader',
-        enforce: 'pre',
-        exclude: /node_modules/,
-        options: {
-          cache: true,
-          extensions: ['.ts', '.tsx', '.js', '.jsx', '.vue'],
-          formatter: require('eslint-friendly-formatter'),
-        },
-      },
-
       {
         test: /\.vue$/,
         use: ['cache-loader', 'vue-loader'],
