@@ -61,8 +61,9 @@ module.exports = {
           to: paths.resolve(config.outputDir),
           toType: 'dir',
           globOptions: {
-            ignore: ['.DS_Store'],
+            ignore: ['.DS_Store', '**/index.html'],
           },
+          noErrorOnMissing: true,
         },
       ],
     }),
