@@ -75,7 +75,7 @@ module.exports = {
     rules: [
       {
         test: /\.vue$/,
-        use: ['cache-loader', 'vue-loader'],
+        loader: 'vue-loader',
       },
 
       {
@@ -88,13 +88,12 @@ module.exports = {
           // Don't transpile node_modules
           return /node_modules/.test(file)
         },
-        use: ['cache-loader', 'thread-loader', 'babel-loader'],
+        use: ['thread-loader', 'babel-loader'],
       },
 
       {
         test: /\.tsx?$/,
         use: [
-          'cache-loader',
           'thread-loader',
           'babel-loader',
           {
