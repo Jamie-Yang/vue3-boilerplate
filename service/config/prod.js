@@ -38,16 +38,4 @@ module.exports = merge(baseWebpackConfig, cssWebpackConfig, {
       },
     },
   },
-
-  plugins: [
-    new PreloadPlugin({
-      rel: 'preload',
-      include: 'initial',
-      fileBlacklist: [/\.map$/, /hot-update\.js$/],
-    }),
-    new PreloadPlugin({
-      rel: 'prefetch',
-      include: 'asyncChunks',
-    }),
-  ],
 })
