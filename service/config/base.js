@@ -2,7 +2,6 @@
 
 const { VueLoaderPlugin } = require('vue-loader')
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin')
-// const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const ESLintPlugin = require('eslint-webpack-plugin')
 const HTMLPlugin = require('html-webpack-plugin')
 const CopyPlugin = require('copy-webpack-plugin')
@@ -11,11 +10,6 @@ const CopyPlugin = require('copy-webpack-plugin')
 const paths = require('../utils/paths')
 
 const config = require('../project.config')
-
-const genUrlLoaderOptions = (dir) => ({
-  limit: 8192,
-  name: paths.getAssetPath(`${dir}/[name].[hash:8].[ext]`),
-})
 
 const genOutputFileName = () => {
   const isProd = process.env.NODE_ENV === 'production'
@@ -109,28 +103,28 @@ module.exports = {
 
       {
         test: /\.(png|jpe?g|gif|webp)(\?.*)?$/,
-        loader: 'url-loader',
-        options: genUrlLoaderOptions('img'),
+        type: 'asset',
+        generator: { filename: 'img/[hash][ext][query]' },
       },
 
       // do not base64-inline SVGs.
       // https://github.com/facebookincubator/create-react-app/pull/1180
       {
         test: /\.(svg)(\?.*)?$/,
-        loader: 'file-loader',
-        options: genUrlLoaderOptions('img'),
+        type: 'asset/resource',
+        generator: { filename: 'img/[hash][ext][query]' },
       },
 
       {
         test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
-        loader: 'url-loader',
-        options: genUrlLoaderOptions('media'),
+        type: 'asset',
+        generator: { filename: 'media/[hash][ext][query]' },
       },
 
       {
         test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/i,
-        loader: 'url-loader',
-        options: genUrlLoaderOptions('fonts'),
+        type: 'asset',
+        generator: { filename: 'fonts/[hash][ext][query]' },
       },
     ],
   },
