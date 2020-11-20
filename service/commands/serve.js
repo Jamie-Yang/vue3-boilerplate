@@ -16,13 +16,16 @@ const port = devServerOptions.port || 8080
 
 info('Starting development server...')
 
+WebpackDevServer.addDevServerEntrypoints(devWebpackConfig, devServerOptions)
 const compiler = webpack(devWebpackConfig)
-const server = new WebpackDevServer(compiler, devWebpackConfig.devServer)
+const server = new WebpackDevServer(compiler, devServerOptions)
 
 compiler.hooks.done.tap('serve', (stats) => {
   if (stats.hasErrors()) {
     return
   }
+  console.log()
+  console.log()
   console.log(`App running at:`)
   console.log(`  - Local:   ${chalk.cyan(`${protocol}://${host}:${port}`)}`)
   console.log(`  - Network: ${chalk.cyan(`${protocol}://${getLocalIP()}:${port}`)}`)
