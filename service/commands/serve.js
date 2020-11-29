@@ -16,7 +16,6 @@ const port = devServerOptions.port || 8080
 
 info('Starting development server...')
 
-WebpackDevServer.addDevServerEntrypoints(devWebpackConfig, devServerOptions)
 const compiler = webpack(devWebpackConfig)
 const server = new WebpackDevServer(compiler, devServerOptions)
 
