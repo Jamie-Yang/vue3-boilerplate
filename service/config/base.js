@@ -51,7 +51,6 @@ module.exports = {
       patterns: [
         {
           from: paths.resolve('public'),
-          to: paths.resolve(config.outputDir),
           toType: 'dir',
           globOptions: {
             ignore: ['.DS_Store', '**/index.html'],
