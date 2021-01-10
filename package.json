@@ -28,6 +28,8 @@
     "chalk": "^4.1.0",
     "copy-webpack-plugin": "^7.0.0",
     "css-loader": "^5.0.1",
+    "dotenv": "^8.2.0",
+    "dotenv-expand": "^5.1.0",
     "eslint": "^7.17.0",
     "eslint-config-prettier": "^7.1.0",
     "eslint-formatter-friendly": "^7.0.0",

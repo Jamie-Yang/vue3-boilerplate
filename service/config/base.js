@@ -7,6 +7,7 @@ const ESLintPlugin = require('eslint-webpack-plugin')
 const HTMLPlugin = require('html-webpack-plugin')
 const CopyPlugin = require('copy-webpack-plugin')
 
+const resolveClientEnv = require('../utils/resolveClientEnv')
 const paths = require('../utils/paths')
 
 const config = require('../project.config')
@@ -63,6 +64,8 @@ module.exports = {
       // vue3 feature flags <http://link.vuejs.org/feature-flags>
       __VUE_OPTIONS_API__: 'true',
       __VUE_PROD_DEVTOOLS__: 'false',
+
+      ...resolveClientEnv({ publicPath: config.dev.publicPath }),
     }),
   ],
 
@@ -75,6 +78,7 @@ module.exports = {
         loader: 'vue-loader',
       },
 
+      // babel
       {
         test: /\.m?jsx?$/,
         exclude: (file) => {
@@ -88,6 +92,7 @@ module.exports = {
         use: ['thread-loader', 'babel-loader'],
       },
 
+      // ts
       {
         test: /\.tsx?$/,
         use: [
@@ -104,6 +109,7 @@ module.exports = {
         ],
       },
 
+      // images
       {
         test: /\.(png|jpe?g|gif|webp)(\?.*)?$/,
         type: 'asset',
@@ -118,12 +124,14 @@ module.exports = {
         generator: { filename: 'img/[contenthash:8][ext][query]' },
       },
 
+      // media
       {
         test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
         type: 'asset',
         generator: { filename: 'media/[contenthash:8][ext][query]' },
       },
 
+      // fonts
       {
         test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/i,
         type: 'asset',
