@@ -1,5 +1,5 @@
 module.exports = {
-  extends: 'stylelint-config-standard',
+  extends: ['stylelint-config-standard', 'stylelint-prettier/recommended'],
   plugins: ['stylelint-scss', 'stylelint-order'],
   ignoreFiles: ['node_modules/**', 'src/assets/font/**', 'src/assets/style/reset.css'],
   rules: {
