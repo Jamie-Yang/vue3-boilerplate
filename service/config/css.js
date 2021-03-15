@@ -1,10 +1,23 @@
 'use strict'
 
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const paths = require('../utils/paths')
+
+const isProd = process.env.NODE_ENV === 'production'
+
+const plugins = []
+if (isProd) {
+  const filename = paths.getAssetPath(`css/[name].[contenthash:8].css`)
+
+  plugins.push(
+    new MiniCssExtractPlugin({
+      filename,
+      chunkFilename: filename,
+    })
+  )
+}
 
 const genStyleRules = () => {
-  const isProd = process.env.NODE_ENV === 'production'
-
   const cssLoader = {
     loader: 'css-loader',
     options: {
@@ -53,6 +66,7 @@ const genStyleRules = () => {
 }
 
 module.exports = {
+  plugins,
   module: {
     rules: genStyleRules(),
   },

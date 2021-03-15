@@ -13,8 +13,5 @@ export default {
   components: {
     HelloWorld,
   },
-  setup(): void {
-    console.log(process.env.NODE_ENV)
-  },
 }
 </script>
