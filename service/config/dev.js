@@ -18,9 +18,11 @@ module.exports = merge(baseWebpackConfig, cssWebpackConfig, {
     dev: {
       publicPath: config.dev.publicPath,
     },
-    overlay: {
-      warnings: true,
-      errors: true,
+    client: {
+      overlay: {
+        warnings: true,
+        errors: true,
+      },
     },
     open: false,
     host: '0.0.0.0',
