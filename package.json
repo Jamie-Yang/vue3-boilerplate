@@ -5,7 +5,11 @@
   "scripts": {
     "serve": "node service/commands/serve.js",
     "build": "node service/commands/build.js",
-    "lint": "eslint --ext .js,.vue src && stylelint \"./src/**/*.vue\" \"./src/**/*.scss\""
+    "lint": "yarn lint:js && yarn lint:css",
+    "lint:js": "eslint --ext .js,.vue src",
+    "lint:js:fix": "eslint --ext .js,.vue src --fix",
+    "lint:css": "stylelint \"./src/**/*.vue\" \"./src/**/*.scss\"",
+    "lint:css:fix": "stylelint \"./src/**/*.vue\" \"./src/**/*.scss\" --fix"
   },
   "dependencies": {
     "@babel/runtime": "^7.13.10",
