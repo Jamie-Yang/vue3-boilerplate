@@ -5,7 +5,7 @@
   "scripts": {
     "serve": "node service/commands/serve.js",
     "build": "node service/commands/build.js",
-    "lint": "eslint --ext .js,.vue src && stylelint \"./src/**/*.vue\" \"./src/**/*.scss\""
+    "lint": "eslint --ext .ts,.js,.vue src --fix && stylelint \"./src/**/*.vue\" \"./src/**/*.scss\" --fix"
   },
   "dependencies": {
     "@babel/runtime": "^7.14.0",
