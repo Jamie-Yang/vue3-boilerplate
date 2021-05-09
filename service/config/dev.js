@@ -15,14 +15,8 @@ module.exports = merge(baseWebpackConfig, cssWebpackConfig, {
     historyApiFallback: {
       rewrites: [{ from: /./, to: '/index.html' }],
     },
-    dev: {
+    devMiddleware: {
       publicPath: config.dev.publicPath,
-    },
-    client: {
-      overlay: {
-        warnings: true,
-        errors: true,
-      },
     },
     open: false,
     host: '0.0.0.0',
