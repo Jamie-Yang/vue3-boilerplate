@@ -18,15 +18,14 @@ module.exports = {
     sourceType: 'module',
   },
 
+  plugins: ['@typescript-eslint'],
+
   extends: [
     'plugin:vue/vue3-essential',
     'eslint:recommended',
-    'plugin:@typescript-eslint/eslint-recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:prettier/recommended',
   ],
-
-  plugins: ['@typescript-eslint'],
 
   rules: {
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
@@ -34,9 +33,6 @@ module.exports = {
 
     // this rule, if on, would require explicit return type on the `render` function
     '@typescript-eslint/explicit-function-return-type': 'off',
-
-    // conflict with Prettier
-    // 'vue/html-indent': 'off',
   },
 
   overrides: [

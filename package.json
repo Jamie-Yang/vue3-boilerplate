@@ -51,7 +51,6 @@
     "stylelint-config-prettier": "^8.0.2",
     "stylelint-config-standard": "^22.0.0",
     "stylelint-order": "^4.1.0",
-    "stylelint-prettier": "^1.2.0",
     "stylelint-scss": "^3.19.0",
     "terser-webpack-plugin": "^5.1.2",
     "thread-loader": "^3.0.4",
