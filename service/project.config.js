@@ -9,6 +9,6 @@ module.exports = {
   },
 
   build: {
-    publicPath: './',
+    publicPath: '/',
   },
 }
