@@ -1,13 +1,12 @@
 'use strict'
 
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const paths = require('../utils/paths')
 
 const isProd = process.env.NODE_ENV === 'production'
 
 const plugins = []
 if (isProd) {
-  const filename = paths.getAssetPath(`css/[name].[contenthash:8].css`)
+  const filename = 'css/[name].[contenthash:8].css'
 
   plugins.push(
     new MiniCssExtractPlugin({

@@ -13,7 +13,7 @@ const paths = require('../utils/paths')
 const config = require('../project.config')
 
 const isProd = process.env.NODE_ENV === 'production'
-const outputFileName = paths.getAssetPath(`js/[name]${isProd ? '.[contenthash:8]' : ''}.js`)
+const outputFileName = `js/[name]${isProd ? '.[contenthash:8]' : ''}.js`
 
 module.exports = {
   context: process.cwd(),
