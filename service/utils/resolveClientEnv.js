@@ -1,3 +1,5 @@
+'use strict'
+
 const prefixRE = /^VUE_APP_/
 
 module.exports = function resolveClientEnv(options, raw) {
