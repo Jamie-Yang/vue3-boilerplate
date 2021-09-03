@@ -21,7 +21,7 @@ const port = devServerOptions.port || 8080
 info('Starting development server...')
 
 const compiler = webpack(devWebpackConfig)
-const server = new WebpackDevServer(compiler, devServerOptions)
+const server = new WebpackDevServer(devServerOptions, compiler)
 
 compiler.hooks.done.tap('serve', (stats) => {
   if (stats.hasErrors()) {
@@ -35,7 +35,7 @@ compiler.hooks.done.tap('serve', (stats) => {
   console.log()
 })
 
-server.listen(port, host, (err) => {
+server.start(port, host, (err) => {
   if (err) {
     process.exit(0)
   }
