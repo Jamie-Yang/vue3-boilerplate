@@ -4,7 +4,7 @@ module.exports = {
     'stylelint-config-standard-scss',
     'stylelint-config-prettier',
   ],
-  plugins: ['stylelint-scss', 'stylelint-order'],
+  plugins: ['stylelint-order'],
   ignoreFiles: ['node_modules/**', 'src/assets/fonts/**', 'src/assets/style/reset.css'],
   overrides: [
     {
