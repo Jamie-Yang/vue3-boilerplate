@@ -27,4 +27,9 @@ module.exports = merge(baseWebpackConfig, cssWebpackConfig, {
   infrastructureLogging: {
     level: 'warn',
   },
+
+  stats: {
+    assets: false,
+    modules: false,
+  },
 })
