@@ -22,7 +22,7 @@ A Vue 3 Starter Boilerplate with Vue Router 4, Vuex 4, Typescript 4, Webpack 5, 
 
 ```bash
 # Start development server.
-yarn serve
+yarn dev
 
 # Compile production bundle.
 yarn build

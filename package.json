@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "serve": "node service/commands/serve.js",
+    "dev": "node service/commands/dev.js",
     "build": "node service/commands/build.js",
     "lint": "yarn lint:js && yarn lint:style",
     "lint:js": "eslint --ext .ts,.js,.vue src --fix",
