@@ -12,9 +12,9 @@
   "dependencies": {
     "@babel/runtime": "^7.17.8",
     "core-js": "^3.21.1",
+    "pinia": "^2.0.12",
     "vue": "^3.2.31",
-    "vue-router": "^4.0.14",
-    "vuex": "^4.0.2"
+    "vue-router": "^4.0.14"
   },
   "devDependencies": {
     "@babel/core": "^7.17.8",

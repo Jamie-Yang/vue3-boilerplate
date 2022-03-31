@@ -70,7 +70,7 @@ module.exports = {
   ],
 
   module: {
-    noParse: /^(vue|vue-router|vuex|vuex-router-sync)$/,
+    noParse: /^(vue|vue-router|pinia)$/,
 
     rules: [
       {
