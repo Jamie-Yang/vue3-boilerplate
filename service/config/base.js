@@ -47,6 +47,12 @@ module.exports = {
     new CaseSensitivePathsPlugin(),
     new HTMLPlugin({
       template: paths.resolve('public/index.html'),
+      templateParameters: {
+        ...resolveClientEnv(
+          { publicPath: isProd ? config.build.publicPath : config.dev.publicPath },
+          true /* raw */
+        ),
+      },
     }),
     new CopyPlugin({
       patterns: [
@@ -65,7 +71,9 @@ module.exports = {
       __VUE_OPTIONS_API__: 'true',
       __VUE_PROD_DEVTOOLS__: 'false',
 
-      ...resolveClientEnv({ publicPath: config.dev.publicPath }),
+      ...resolveClientEnv({
+        publicPath: isProd ? config.build.publicPath : config.dev.publicPath,
+      }),
     }),
   ],
 
