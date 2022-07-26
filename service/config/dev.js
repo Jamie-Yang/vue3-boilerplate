@@ -4,6 +4,7 @@ const { merge } = require('webpack-merge')
 
 const baseWebpackConfig = require('./base')
 const cssWebpackConfig = require('./css')
+const createNoopServiceWorkerMiddleware = require('../libs/noopServiceWorkerMiddleware')
 const config = require('../project.config')
 
 module.exports = merge(baseWebpackConfig, cssWebpackConfig, {
@@ -22,6 +23,10 @@ module.exports = merge(baseWebpackConfig, cssWebpackConfig, {
     host: '0.0.0.0',
     port: config.dev.port,
     liveReload: false,
+    setupMiddlewares(middlewares, devServer) {
+      devServer.app.use(createNoopServiceWorkerMiddleware())
+      return middlewares
+    },
   },
 
   infrastructureLogging: {

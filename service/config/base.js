@@ -7,6 +7,7 @@ const ESLintPlugin = require('eslint-webpack-plugin')
 const HTMLPlugin = require('html-webpack-plugin')
 const CopyPlugin = require('copy-webpack-plugin')
 
+const HtmlPwaPlugin = require('../libs/HtmlPwaPlugin')
 const resolveClientEnv = require('../utils/resolveClientEnv')
 const paths = require('../utils/paths')
 
@@ -54,6 +55,7 @@ module.exports = {
         ),
       },
     }),
+    new HtmlPwaPlugin(config.pwa),
     new CopyPlugin({
       patterns: [
         {

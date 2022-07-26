@@ -2,11 +2,13 @@
 
 const { merge } = require('webpack-merge')
 const TerserPlugin = require('terser-webpack-plugin')
+const WorkboxPlugin = require('workbox-webpack-plugin')
 
 const baseWebpackConfig = require('./base')
 const cssWebpackConfig = require('./css')
 const config = require('../project.config')
 const terserOptions = require('./terserOptions')
+const workboxOptions = require('./workboxOptions')
 
 module.exports = merge(baseWebpackConfig, cssWebpackConfig, {
   mode: 'production',
@@ -37,4 +39,6 @@ module.exports = merge(baseWebpackConfig, cssWebpackConfig, {
       },
     },
   },
+
+  plugins: [new WorkboxPlugin[config.pwa.workboxPluginMode](workboxOptions(config.pwa))],
 })
