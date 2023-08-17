@@ -1,6 +1,6 @@
 # vue3-boilerplate
 
-A Vue 3 Starter Boilerplate with Vue Router 4, Pinia 2, Typescript 4, Webpack 5, Prettier and More.
+A Vue 3 Starter Boilerplate with Vue Router 4, Pinia 2, Typescript 5, Webpack 5, Prettier and More.
 
 **And not using the Vue CLI.**
 
