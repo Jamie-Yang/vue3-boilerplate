@@ -14,7 +14,7 @@ const paths = require('../utils/paths')
 const webpackConfig = require('../config/prod')
 const config = require('../project.config')
 
-logWithSpinner('Building for production...')
+logWithSpinner('Building for production...\n')
 
 rimraf(paths.resolve(config.outputDir)).then(() => {
   webpack(webpackConfig, (err, stats) => {
