@@ -1,6 +1,4 @@
-'use strict'
-
-module.exports = (options) => ({
+export default (options) => ({
   terserOptions: {
     compress: {
       // turn off flags with small gains to speed up minification

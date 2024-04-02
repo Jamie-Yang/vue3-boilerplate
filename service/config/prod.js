@@ -1,14 +1,12 @@
-'use strict'
+import { merge } from 'webpack-merge'
+import TerserPlugin from 'terser-webpack-plugin'
 
-const { merge } = require('webpack-merge')
-const TerserPlugin = require('terser-webpack-plugin')
+import baseWebpackConfig from './base.js'
+import cssWebpackConfig from './css.js'
+import config from '../project.config.js'
+import terserOptions from './terserOptions.js'
 
-const baseWebpackConfig = require('./base')
-const cssWebpackConfig = require('./css')
-const config = require('../project.config')
-const terserOptions = require('./terserOptions')
-
-module.exports = merge(baseWebpackConfig, cssWebpackConfig, {
+export default merge(baseWebpackConfig, cssWebpackConfig, {
   mode: 'production',
 
   output: {

@@ -1,11 +1,11 @@
 {
   "compilerOptions": {
-    "target": "ESNext",
-    "module": "ESNext",
+    "target": "es2022",
+    "module": "node16",
     "strict": true,
     "jsx": "preserve",
     "importHelpers": true,
-    "moduleResolution": "node",
+    "moduleResolution": "node16",
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "sourceMap": true,
@@ -14,7 +14,7 @@
     "paths": {
       "@/*": ["src/*"]
     },
-    "lib": ["ESNext", "DOM", "DOM.Iterable", "ScriptHost"]
+    "lib": ["es2023", "DOM", "DOM.Iterable", "ScriptHost"]
   },
   "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue", "tests/**/*.ts", "tests/**/*.tsx"],
   "exclude": ["node_modules", "dist"]

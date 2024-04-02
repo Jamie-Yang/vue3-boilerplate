@@ -1,17 +1,15 @@
-'use strict'
-
-const loadEnv = require('../utils/loadEnv')
+import loadEnv from '../utils/loadEnv.js'
 loadEnv()
 loadEnv('development')
 
-const chalk = require('chalk')
-const webpack = require('webpack')
-const WebpackDevServer = require('webpack-dev-server')
+import chalk from 'chalk'
+import webpack from 'webpack'
+import WebpackDevServer from 'webpack-dev-server'
 
-const { info } = require('../utils/logger')
-const getLocalIP = require('../utils/getLocalIP')
+import { info } from '../utils/logger.js'
+import getLocalIP from '../utils/getLocalIP.js'
 
-const devWebpackConfig = require('../config/dev')
+import devWebpackConfig from '../config/dev.js'
 
 const devServerOptions = devWebpackConfig.devServer
 const protocol = devServerOptions.https ? 'https' : 'http'
