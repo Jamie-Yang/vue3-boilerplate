@@ -42,6 +42,8 @@ module.exports = {
       emitWarning: true,
       extensions: ['.ts', '.tsx', '.js', '.jsx', '.vue'],
       formatter: require('eslint-formatter-friendly'),
+      configType: 'flat',
+      eslintPath: 'eslint/use-at-your-own-risk',
     }),
     new VueLoaderPlugin(),
     new CaseSensitivePathsPlugin(),
@@ -50,7 +52,7 @@ module.exports = {
       templateParameters: {
         ...resolveClientEnv(
           { publicPath: isProd ? config.build.publicPath : config.dev.publicPath },
-          true /* raw */
+          true /* raw */,
         ),
       },
     }),

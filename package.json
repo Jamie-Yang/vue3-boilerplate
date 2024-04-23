@@ -5,9 +5,10 @@
   "scripts": {
     "dev": "node service/commands/dev.js",
     "build": "node service/commands/build.js",
-    "lint": "yarn lint:js && yarn lint:style",
-    "lint:js": "eslint --ext .ts,.js,.vue src --fix",
-    "lint:style": "stylelint \"./src/**/*.vue\" \"./src/**/*.scss\" --fix"
+    "lint": "npm run lint:prettier && npm run lint:eslint && npm run lint:stylelint",
+    "lint:prettier": "prettier . --write --log-level warn",
+    "lint:eslint": "eslint src --fix",
+    "lint:stylelint": "stylelint \"./src/**/*.vue\" \"./src/**/*.scss\" --fix"
   },
   "dependencies": {
     "@babel/runtime": "^7.22.10",
@@ -20,6 +21,7 @@
     "@babel/core": "^7.22.10",
     "@babel/plugin-transform-runtime": "^7.22.10",
     "@babel/preset-env": "^7.22.10",
+    "@eslint/js": "^9.1.1",
     "@types/webpack-env": "^1.18.1",
     "@typescript-eslint/eslint-plugin": "^7.7.0",
     "@typescript-eslint/parser": "^7.7.0",
@@ -35,9 +37,9 @@
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-formatter-friendly": "^7.0.0",
-    "eslint-plugin-prettier": "^5.0.0",
-    "eslint-plugin-vue": "^9.17.0",
+    "eslint-plugin-vue": "^9.25.0",
     "eslint-webpack-plugin": "^4.0.1",
+    "globals": "^15.0.0",
     "html-webpack-plugin": "^5.5.3",
     "mini-css-extract-plugin": "^2.7.6",
     "ora": "^5.4.1",
@@ -58,7 +60,7 @@
     "thread-loader": "^4.0.2",
     "ts-loader": "^9.4.4",
     "typescript": "^5.1.6",
-    "vue-eslint-parser": "^9.3.1",
+    "typescript-eslint": "^7.7.1",
     "vue-loader": "^17.2.2",
     "vue-style-loader": "^4.1.3",
     "webpack": "^5.88.2",
@@ -66,7 +68,7 @@
     "webpack-merge": "^5.9.0"
   },
   "engines": {
-    "node": ">=16.15.0"
+    "node": ">=18.18.0"
   },
-  "packageManager": "yarn@3.2.1"
+  "packageManager": "pnpm@9.0.5+sha256.61bd66913b52012107ec25a6ee4d6a161021ab99e04f6acee3aa50d0e34b4af9"
 }

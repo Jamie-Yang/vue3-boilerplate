@@ -12,7 +12,7 @@ if (isProd) {
     new MiniCssExtractPlugin({
       filename,
       chunkFilename: filename,
-    })
+    }),
   )
 }
 

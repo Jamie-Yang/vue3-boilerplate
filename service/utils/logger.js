@@ -45,7 +45,7 @@ exports.done = (msg, tag = null) => {
 
 exports.warn = (msg, tag = null) => {
   console.warn(
-    format(chalk.bgYellow.black(' WARN ') + (tag ? chalkTag(tag) : ''), chalk.yellow(msg))
+    format(chalk.bgYellow.black(' WARN ') + (tag ? chalkTag(tag) : ''), chalk.yellow(msg)),
   )
   _log('warn', tag, msg)
 }
