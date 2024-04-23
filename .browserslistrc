@@ -1,3 +1,7 @@
+[production]
 > 1%
 last 2 versions
 not dead
+
+[development]
+last 1 chrome version
