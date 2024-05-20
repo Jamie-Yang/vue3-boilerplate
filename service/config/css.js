@@ -23,7 +23,6 @@ const genStyleRules = () => {
       // how many loaders before css-loader should be applied to [@import]ed resources.
       // stylePostLoader injected by vue-loader + postcss-loader
       importLoaders: 1 + 1,
-      esModule: false, // css-loader using ES Modules as default in v4, but vue-style-loader support cjs only.
     },
   }
   const postcssLoader = {
