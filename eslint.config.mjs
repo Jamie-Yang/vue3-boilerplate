@@ -28,7 +28,7 @@ export default [
   },
 
   {
-    files: ['service/**/*.js'],
+    files: ['service/**/*.js', '.prettierrc.js', '.stylelintrc.js', 'babel.config.js'],
 
     languageOptions: {
       globals: {
@@ -38,6 +38,11 @@ export default [
 
     rules: {
       '@typescript-eslint/no-var-requires': 'off',
+      '@typescript-eslint/no-require-imports': 'off',
     },
+  },
+
+  {
+    ignores: ['dist'],
   },
 ]
