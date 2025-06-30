@@ -11,7 +11,7 @@ module.exports = function loadEnv(mode) {
 
   const load = (envPath) => {
     try {
-      const env = dotenv.config({ path: envPath, debug: process.env.DEBUG })
+      const env = dotenv.config({ path: envPath, debug: process.env.DEBUG, quiet: true })
       dotenvExpand.expand(env)
     } catch (err) {
       // only ignore error if file is not found
