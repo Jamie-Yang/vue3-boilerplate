@@ -15,10 +15,16 @@ export default {
       {
         method: 'usage-global',
         version: '3.51',
-        proposals: true,
       },
     ],
-    '@babel/plugin-transform-runtime', // enables the re-use of Babel's injected helper code to save on codesize.
+    // 按项目声明的 runtime 版本复用辅助函数。
+    [
+      '@babel/plugin-transform-runtime',
+      {
+        version: '^8.1.0',
+      },
+    ],
   ],
-  exclude: [/core-js/],
+  // 仅排除依赖包，避免误匹配业务文件路径。
+  exclude: [/[\\/]node_modules[\\/]core-js[\\/]/],
 }
