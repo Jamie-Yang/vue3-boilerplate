@@ -13,9 +13,6 @@ export default [
 
   {
     languageOptions: {
-      globals: {
-        ...globals.browser,
-      },
       ecmaVersion: 2024,
       parserOptions: {
         ecmaFeatures: { jsx: true },
@@ -29,16 +26,23 @@ export default [
   },
 
   {
-    files: ['service/**/*.js', '.prettierrc.js', '.stylelintrc.js', 'babel.config.js'],
+    files: ['src/**/*.{js,ts,tsx,vue}'],
+    languageOptions: {
+      globals: globals.browser,
+    },
+  },
+
+  {
+    files: [
+      'service/**/*.js',
+      '.prettierrc.js',
+      '.stylelintrc.js',
+      'babel.config.js',
+      'eslint.config.mjs',
+    ],
 
     languageOptions: {
-      globals: {
-        ...globals.node,
-      },
-    },
-
-    rules: {
-      '@typescript-eslint/no-require-imports': 'off',
+      globals: globals.nodeBuiltin,
     },
   },
 
