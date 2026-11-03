@@ -8,6 +8,8 @@ import { info } from '../utils/logger.js'
 import getLocalIP from '../utils/getLocalIP.js'
 
 loadEnv('development')
+process.env.NODE_ENV = 'development'
+process.env.BABEL_ENV = 'development'
 
 // 动态加载 Webpack 配置，确保配置读取已初始化的环境变量。
 const { default: devWebpackConfig } = await import('../config/dev.js')
@@ -17,6 +19,8 @@ const serverType = devServerOptions.server?.type || devServerOptions.server || '
 const protocol = serverType === 'http' ? 'http' : 'https'
 const host = devServerOptions.host || '0.0.0.0'
 const port = devServerOptions.port || 8080
+const localHost = host === '0.0.0.0' || host === '::' ? 'localhost' : host
+const localUrlHost = localHost.includes(':') ? `[${localHost}]` : localHost
 
 info('Starting development server...')
 
@@ -30,8 +34,11 @@ compiler.hooks.done.tap('serve', (stats) => {
   console.log()
   console.log()
   console.log(`App running at:`)
-  console.log(`  - Local:   ${chalk.cyan(`${protocol}://${host}:${port}`)}`)
-  console.log(`  - Network: ${chalk.cyan(`${protocol}://${getLocalIP()}:${port}`)}`)
+  console.log(`  - Local:   ${chalk.cyan(`${protocol}://${localUrlHost}:${port}`)}`)
+  const networkIP = getLocalIP()
+  if (networkIP) {
+    console.log(`  - Network: ${chalk.cyan(`${protocol}://${networkIP}:${port}`)}`)
+  }
   console.log()
 })
 
@@ -40,4 +47,5 @@ try {
 } catch (err) {
   console.error(err)
   process.exitCode = 1
+  await new Promise((resolve) => compiler.close(resolve))
 }

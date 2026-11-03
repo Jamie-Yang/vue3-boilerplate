@@ -62,4 +62,6 @@ Variables prefixed with `VUE_APP_` are embedded in client code and can be read t
 const apiBaseUrl = process.env.VUE_APP_API_BASE_URL
 ```
 
+`pnpm dev` sets `NODE_ENV` and `BABEL_ENV` to `development`; `pnpm build` sets them to `production`.
+
 Restart the development server after changing environment files or build configuration.
