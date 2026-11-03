@@ -1,11 +1,8 @@
 import loadEnv from '../utils/loadEnv.js'
-import { rimraf } from 'rimraf'
 import webpack from 'webpack'
 
 import { error, done } from '../utils/logger.js'
 import { logWithSpinner, stopSpinner } from '../utils/spinner.js'
-import * as paths from '../utils/paths.js'
-import config from '../project.config.js'
 
 try {
   loadEnv('production')
@@ -15,7 +12,6 @@ try {
   const { default: webpackConfig } = await import('../config/prod.js')
 
   logWithSpinner('Building for production...\n')
-  await rimraf(paths.resolve(config.outputDir))
   // Webpack 的回调 API 会在返回结果前关闭 compiler。
   const stats = await new Promise((resolve, reject) => {
     webpack(webpackConfig, (err, result) => {

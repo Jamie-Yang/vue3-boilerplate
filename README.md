@@ -18,12 +18,12 @@ The development server listens on port `8080` by default.
 
 ## Commands
 
-| Command           | Description                                                               |
-| ----------------- | ------------------------------------------------------------------------- |
-| `pnpm dev`        | Start the development server.                                             |
-| `pnpm build`      | Create a production bundle in `dist/`. Clears the output directory first. |
-| `pnpm type-check` | Check TypeScript and Vue files without generating a bundle.               |
-| `pnpm lint`       | Run Prettier, ESLint and Stylelint with formatting and automatic fixes.   |
+| Command           | Description                                                             |
+| ----------------- | ----------------------------------------------------------------------- |
+| `pnpm dev`        | Start the development server.                                           |
+| `pnpm build`      | Type-check and build to `dist/`, removing stale output files on emit.   |
+| `pnpm type-check` | Check TypeScript and Vue files without generating a bundle.             |
+| `pnpm lint`       | Run Prettier, ESLint and Stylelint with formatting and automatic fixes. |
 
 ## Project structure
 
