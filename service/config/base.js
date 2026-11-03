@@ -1,21 +1,22 @@
-'use strict'
+import friendlyFormatter from 'eslint-formatter-friendly'
+import webpack from 'webpack'
+import { VueLoaderPlugin } from 'vue-loader'
+import CaseSensitivePathsPlugin from 'case-sensitive-paths-webpack-plugin'
+import ESLintPlugin from 'eslint-webpack-plugin'
+import HTMLPlugin from 'html-webpack-plugin'
+import CopyPlugin from 'copy-webpack-plugin'
 
-const { DefinePlugin } = require('webpack')
-const { VueLoaderPlugin } = require('vue-loader')
-const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin')
-const ESLintPlugin = require('eslint-webpack-plugin')
-const HTMLPlugin = require('html-webpack-plugin')
-const CopyPlugin = require('copy-webpack-plugin')
+import resolveClientEnv from '../utils/resolveClientEnv.js'
+import * as paths from '../utils/paths.js'
 
-const resolveClientEnv = require('../utils/resolveClientEnv')
-const paths = require('../utils/paths')
+import config from '../project.config.js'
 
-const config = require('../project.config')
+const { DefinePlugin } = webpack
 
 const isProd = process.env.NODE_ENV === 'production'
 const outputFileName = `js/[name]${isProd ? '.[contenthash:8]' : ''}.js`
 
-module.exports = {
+export default {
   context: process.cwd(),
 
   entry: {
@@ -41,9 +42,8 @@ module.exports = {
       emitError: true,
       emitWarning: true,
       extensions: ['.ts', '.tsx', '.js', '.jsx', '.vue'],
-      formatter: require('eslint-formatter-friendly'),
+      formatter: friendlyFormatter,
       configType: 'flat',
-      eslintPath: 'eslint/use-at-your-own-risk',
     }),
     new VueLoaderPlugin(),
     new CaseSensitivePathsPlugin(),
@@ -81,8 +81,6 @@ module.exports = {
   ],
 
   module: {
-    noParse: /^(vue|vue-router|pinia)$/,
-
     rules: [
       {
         test: /\.vue$/,

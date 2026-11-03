@@ -1,8 +1,6 @@
-'use strict'
+import os from 'os'
 
-const os = require('os')
-
-module.exports = function getLocalIP() {
+export default function getLocalIP() {
   const interfaces = os.networkInterfaces()
 
   for (const devName in interfaces) {

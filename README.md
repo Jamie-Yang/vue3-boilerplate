@@ -1,29 +1,65 @@
 # vue3-boilerplate
 
-A Vue 3 Starter Boilerplate with Vue Router 4, Pinia 2, Typescript 5, Webpack 5, Prettier and More.
+A Vue 3 starter with Vue Router 5, Pinia 4, TypeScript 6 and Webpack 5.
 
-**And not using the Vue CLI.**
+## Requirements
 
-## Architecture
+- Node.js `^22.18.0 || >=24.11.0`
+- pnpm 10
 
-```text
-├─ public           // static assets.
-├─ service          // commands and webpack configurations.
-├─ src
-│  ├─ assets        // assets such as images or font files.
-│  ├─ components    // universal Vue components.
-│  ├─ router        // view's routers config.
-│  ├─ stores        // Pinia stores.
-│  ├─ typings       // typescript .d.ts files.
-│  └─ views         // pages.
+## Getting started
+
+```bash
+pnpm install --frozen-lockfile
+pnpm dev
 ```
+
+The development server listens on port `8080` by default.
 
 ## Commands
 
-```bash
-# Start development server.
-yarn dev
+| Command           | Description                                                               |
+| ----------------- | ------------------------------------------------------------------------- |
+| `pnpm dev`        | Start the development server.                                             |
+| `pnpm build`      | Create a production bundle in `dist/`. Clears the output directory first. |
+| `pnpm type-check` | Check TypeScript and Vue files without generating a bundle.               |
+| `pnpm lint`       | Run Prettier, ESLint and Stylelint with formatting and automatic fixes.   |
 
-# Compile production bundle.
-yarn build
+## Project structure
+
+```text
+├─ public                 # Static files copied to the output directory.
+├─ service
+│  ├─ commands            # Development and build entry points.
+│  ├─ config              # Webpack configuration.
+│  └─ project.config.js   # Port, public paths and output directory.
+├─ src
+│  ├─ assets              # Shared images, fonts and styles.
+│  ├─ components          # Shared Vue components.
+│  ├─ router              # Routes; uses hash history.
+│  ├─ stores              # Pinia stores.
+│  └─ views               # Pages and their local components and assets.
 ```
+
+The `@/` import alias points to `src/`.
+
+## Configuration
+
+- Set the development port, development/production public paths and output directory in `service/project.config.js`.
+- Configure target browsers in `.browserslistrc`.
+- Static files belong in `public/`; `public/index.html` is the HTML template.
+
+## Environment variables
+
+- `.env` contains shared values.
+- `.env.development` and `.env.production` contain values for their respective commands.
+- `.env.local` and `.env.<mode>.local` contain local overrides and are ignored by Git.
+- Existing environment variables take precedence. Files load in this order, with earlier values taking precedence: `.env.local`, `.env`, `.env.<mode>.local`, `.env.<mode>`.
+
+Variables prefixed with `VUE_APP_` are embedded in client code and can be read through `process.env.VUE_APP_*`. Do not put secrets in these variables. `NODE_ENV` and `PUBLIC_PATH` are also available in client code.
+
+```ts
+const apiBaseUrl = process.env.VUE_APP_API_BASE_URL
+```
+
+Restart the development server after changing environment files or build configuration.

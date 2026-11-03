@@ -1,20 +1,21 @@
-'use strict'
+import loadEnv from '../utils/loadEnv.js'
 
-const loadEnv = require('../utils/loadEnv')
+import chalk from 'chalk'
+import webpack from 'webpack'
+import WebpackDevServer from 'webpack-dev-server'
+
+import { info } from '../utils/logger.js'
+import getLocalIP from '../utils/getLocalIP.js'
+
 loadEnv()
 loadEnv('development')
 
-const chalk = require('chalk')
-const webpack = require('webpack')
-const WebpackDevServer = require('webpack-dev-server')
-
-const { info } = require('../utils/logger')
-const getLocalIP = require('../utils/getLocalIP')
-
-const devWebpackConfig = require('../config/dev')
+// 动态加载 Webpack 配置，确保配置读取已初始化的环境变量。
+const { default: devWebpackConfig } = await import('../config/dev.js')
 
 const devServerOptions = devWebpackConfig.devServer
-const protocol = devServerOptions.https ? 'https' : 'http'
+const serverType = devServerOptions.server?.type || devServerOptions.server || 'http'
+const protocol = serverType === 'http' ? 'http' : 'https'
 const host = devServerOptions.host || '0.0.0.0'
 const port = devServerOptions.port || 8080
 
@@ -35,8 +36,9 @@ compiler.hooks.done.tap('serve', (stats) => {
   console.log()
 })
 
-server.start(port, host, (err) => {
-  if (err) {
-    process.exit(0)
-  }
-})
+try {
+  await server.start()
+} catch (err) {
+  console.error(err)
+  process.exitCode = 1
+}

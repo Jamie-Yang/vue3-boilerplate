@@ -1,18 +1,18 @@
-'use strict'
+import loadEnv from '../utils/loadEnv.js'
 
-const loadEnv = require('../utils/loadEnv')
+import { rimraf } from 'rimraf'
+import webpack from 'webpack'
+
+import { error, done } from '../utils/logger.js'
+import { logWithSpinner, stopSpinner } from '../utils/spinner.js'
+import * as paths from '../utils/paths.js'
+import config from '../project.config.js'
+
 loadEnv()
 loadEnv('production')
 
-const { rimraf } = require('rimraf')
-const webpack = require('webpack')
-
-const { error, done } = require('../utils/logger')
-const { logWithSpinner, stopSpinner } = require('../utils/spinner')
-const paths = require('../utils/paths')
-
-const webpackConfig = require('../config/prod')
-const config = require('../project.config')
+// 动态加载 Webpack 配置，确保配置读取已初始化的环境变量。
+const { default: webpackConfig } = await import('../config/prod.js')
 
 logWithSpinner('Building for production...\n')
 

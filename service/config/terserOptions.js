@@ -1,11 +1,9 @@
-'use strict'
-
-module.exports = () => ({
+export default () => ({
   terserOptions: {
     compress: {
-      // turn off flags with small gains to speed up minification
+      // 禁用以下压缩变换，减少压缩耗时。
       arrows: false,
-      collapse_vars: false, // 0.3kb
+      collapse_vars: false,
       comparisons: false,
       computed_props: false,
       hoist_funs: false,
@@ -21,14 +19,13 @@ module.exports = () => ({
       toplevel: false,
       typeofs: false,
 
-      // a few flags with noticable gains/speed ratio
-      // numbers based on out of the box vendor bundle
-      booleans: true, // 0.7kb
-      if_return: true, // 0.4kb
-      sequences: true, // 0.7kb
-      unused: true, // 2.3kb
+      // 启用布尔表达式、条件返回、表达式合并及未使用代码压缩。
+      booleans: true,
+      if_return: true,
+      sequences: true,
+      unused: true,
 
-      // required features to drop conditional branches
+      // 简化条件表达式并移除不可达分支。
       conditionals: true,
       dead_code: true,
       evaluate: true,
@@ -37,6 +34,5 @@ module.exports = () => ({
       safari10: true,
     },
   },
-  // parallel: options.parallel,
   extractComments: false,
 })

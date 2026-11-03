@@ -1,11 +1,9 @@
-'use strict'
+import path from 'path'
+import dotenv from 'dotenv'
+import dotenvExpand from 'dotenv-expand'
+import { error } from './logger.js'
 
-const path = require('path')
-const dotenv = require('dotenv')
-const dotenvExpand = require('dotenv-expand')
-const { error } = require('./logger')
-
-module.exports = function loadEnv(mode) {
+export default function loadEnv(mode) {
   const basePath = path.resolve(process.cwd(), `.env${mode ? `.${mode}` : ``}`)
   const localPath = `${basePath}.local`
 

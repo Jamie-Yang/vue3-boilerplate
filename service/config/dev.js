@@ -1,12 +1,10 @@
-'use strict'
+import { merge } from 'webpack-merge'
 
-const { merge } = require('webpack-merge')
+import baseWebpackConfig from './base.js'
+import cssWebpackConfig from './css.js'
+import config from '../project.config.js'
 
-const baseWebpackConfig = require('./base')
-const cssWebpackConfig = require('./css')
-const config = require('../project.config')
-
-module.exports = merge(baseWebpackConfig, cssWebpackConfig, {
+export default merge(baseWebpackConfig, cssWebpackConfig, {
   mode: 'development',
 
   devtool: 'eval-cheap-module-source-map',

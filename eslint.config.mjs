@@ -2,6 +2,7 @@ import globals from 'globals'
 import js from '@eslint/js'
 import pluginTs from 'typescript-eslint'
 import pluginVue from 'eslint-plugin-vue'
+import vueParser from 'vue-eslint-parser'
 import configPrettier from 'eslint-config-prettier'
 
 export default [
@@ -37,8 +38,19 @@ export default [
     },
 
     rules: {
-      '@typescript-eslint/no-var-requires': 'off',
       '@typescript-eslint/no-require-imports': 'off',
+    },
+  },
+
+  {
+    files: ['**/*.vue'],
+    languageOptions: {
+      parser: vueParser,
+      parserOptions: {
+        // Vue 模板由 vue-eslint-parser 解析，script 中的 TS 交给 TS parser。
+        parser: pluginTs.parser,
+        extraFileExtensions: ['.vue'],
+      },
     },
   },
 
