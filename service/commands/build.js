@@ -8,7 +8,6 @@ import { logWithSpinner, stopSpinner } from '../utils/spinner.js'
 import * as paths from '../utils/paths.js'
 import config from '../project.config.js'
 
-loadEnv()
 loadEnv('production')
 
 // 动态加载 Webpack 配置，确保配置读取已初始化的环境变量。

@@ -7,7 +7,6 @@ import WebpackDevServer from 'webpack-dev-server'
 import { info } from '../utils/logger.js'
 import getLocalIP from '../utils/getLocalIP.js'
 
-loadEnv()
 loadEnv('development')
 
 // 动态加载 Webpack 配置，确保配置读取已初始化的环境变量。
