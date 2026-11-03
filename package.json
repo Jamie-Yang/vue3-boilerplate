@@ -8,7 +8,7 @@
     "lint": "npm run lint:prettier && npm run lint:eslint && npm run lint:stylelint",
     "lint:prettier": "prettier . --write --log-level warn",
     "lint:eslint": "eslint --fix",
-    "lint:stylelint": "stylelint \"./src/**/*.vue\" \"./src/**/*.scss\" --fix",
+    "lint:stylelint": "stylelint \"./src/**/*.{vue,css,pcss,postcss,scss}\" --fix",
     "type-check": "vue-tsc --noEmit"
   },
   "dependencies": {
