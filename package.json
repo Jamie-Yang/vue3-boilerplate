@@ -26,6 +26,7 @@
     "@types/webpack-env": "^1.18.8",
     "@typescript-eslint/eslint-plugin": "8.72.1",
     "@typescript-eslint/parser": "8.72.1",
+    "@vue/babel-plugin-jsx": "^3.0.0",
     "@vue/compiler-sfc": "^3.5.44",
     "autoprefixer": "^10.6.2",
     "babel-loader": "^10.1.1",

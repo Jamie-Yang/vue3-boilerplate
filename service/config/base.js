@@ -103,7 +103,7 @@ export default {
 
       // ts
       {
-        test: /\.tsx?$/,
+        test: /\.ts$/,
         use: [
           'thread-loader',
           'babel-loader',
@@ -112,6 +112,23 @@ export default {
             options: {
               transpileOnly: true,
               appendTsSuffixTo: ['\\.vue$'],
+              happyPackMode: true,
+            },
+          },
+        ],
+      },
+
+      // TSX 使用独立规则，确保 Vue 中的 lang="tsx" 按 TSX 语法转译。
+      {
+        test: /\.tsx$/,
+        use: [
+          'thread-loader',
+          'babel-loader',
+          {
+            loader: 'ts-loader',
+            options: {
+              transpileOnly: true,
+              appendTsxSuffixTo: ['\\.vue$'],
               happyPackMode: true,
             },
           },

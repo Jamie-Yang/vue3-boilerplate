@@ -8,6 +8,7 @@ export default {
     ],
   ],
   plugins: [
+    '@vue/babel-plugin-jsx',
     // 根据代码使用情况和目标浏览器，按需引入 core-js polyfill。
     [
       'babel-plugin-polyfill-corejs3',

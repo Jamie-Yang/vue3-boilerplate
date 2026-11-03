@@ -26,7 +26,7 @@ export default [
   },
 
   {
-    files: ['src/**/*.{js,ts,tsx,vue}'],
+    files: ['src/**/*.{js,jsx,ts,tsx,vue}'],
     languageOptions: {
       globals: globals.browser,
     },
@@ -55,6 +55,10 @@ export default [
         parser: pluginTs.parser,
         extraFileExtensions: ['.vue'],
       },
+    },
+    rules: {
+      // Vue 脚本使用 TypeScript，未声明标识符由 vue-tsc 检查，与 .ts 文件保持一致。
+      'no-undef': 'off',
     },
   },
 

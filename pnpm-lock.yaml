@@ -45,6 +45,9 @@ importers:
       '@typescript-eslint/parser':
         specifier: 8.72.1
         version: 8.72.1(eslint@10.14.0(jiti@2.7.0))(typescript@6.0.3)
+      '@vue/babel-plugin-jsx':
+        specifier: ^3.0.0
+        version: 3.0.0(@babel/core@8.1.0)
       '@vue/compiler-sfc':
         specifier: ^3.5.44
         version: 3.5.44
@@ -347,6 +350,12 @@ packages:
 
   '@babel/plugin-bugfix-v8-static-class-fields-redefine-readonly@8.0.1':
     resolution: {integrity: sha512-P8+RN2n7ts2s1vnE+lXdHYf+dhnmcGSen/kWzBsVluT9Sey5AqmcRXYWlHqgQxaNlKTD5YMa1tf5z4d1v8W88w==}
+    engines: {node: ^22.18.0 || >=24.11.0}
+    peerDependencies:
+      '@babel/core': ^8.0.0
+
+  '@babel/plugin-syntax-jsx@8.0.1':
+    resolution: {integrity: sha512-n0jtCOxEovhU7METqSQjcZO9pX53nu9uNIjMS+hEt+Nt9jA7oOZoBIgbCxhhASmF6T6rPDGge5UAvh6Z4eFz/g==}
     engines: {node: ^22.18.0 || >=24.11.0}
     peerDependencies:
       '@babel/core': ^8.0.0
@@ -1257,6 +1266,24 @@ packages:
     peerDependenciesMeta:
       vue:
         optional: true
+
+  '@vue/babel-helper-vue-transform-on@3.0.0':
+    resolution: {integrity: sha512-hN187ay+i8cHBSYVpBvg8DN3RHRcmjyv4Otzemc3ZUlW7RJSXsj2e6yXelPD6rus5ROU16c2O9K5Wk3FUOsdmw==}
+
+  '@vue/babel-plugin-jsx@3.0.0':
+    resolution: {integrity: sha512-VZ/micv0MEJXUwzfBOQxLmWF1GWjqJNwVIu6UI1i2mZtqhkI6OlfWdmZwtLV2Yg/6ORtTH8LG5ZRxKjnh83NIw==}
+    engines: {node: ^22.18.0 || >=24.11.0}
+    peerDependencies:
+      '@babel/core': ^8.0.0
+    peerDependenciesMeta:
+      '@babel/core':
+        optional: true
+
+  '@vue/babel-plugin-resolve-type@3.0.0':
+    resolution: {integrity: sha512-OErbN/w4576kOAisxhFoKg7xliTvUivLAlmm9iDVXcE2RXIj+bcdYu6DHc0TkaH4V8afk1/ZgSZLxtkibdM+kw==}
+    engines: {node: ^22.18.0 || >=24.11.0}
+    peerDependencies:
+      '@babel/core': ^8.0.0
 
   '@vue/compiler-core@3.5.44':
     resolution: {integrity: sha512-k34nCytbK8PQ1gR2mGROYOw6Pnv/mumqIdrZ3x2tbyXZDWm7ViKGLTfdB+DRrWqEQsLgGJvn0WN9jBif5zCTLQ==}
@@ -3761,6 +3788,11 @@ snapshots:
       '@babel/core': 8.1.0
       '@babel/helper-plugin-utils': 8.0.1(@babel/core@8.1.0)
 
+  '@babel/plugin-syntax-jsx@8.0.1(@babel/core@8.1.0)':
+    dependencies:
+      '@babel/core': 8.1.0
+      '@babel/helper-plugin-utils': 8.0.1(@babel/core@8.1.0)
+
   '@babel/plugin-transform-arrow-functions@8.0.1(@babel/core@8.1.0)':
     dependencies:
       '@babel/core': 8.1.0
@@ -4790,6 +4822,30 @@ snapshots:
       unplugin-utils: 0.3.2
     optionalDependencies:
       vue: 3.5.44(typescript@6.0.3)
+
+  '@vue/babel-helper-vue-transform-on@3.0.0': {}
+
+  '@vue/babel-plugin-jsx@3.0.0(@babel/core@8.1.0)':
+    dependencies:
+      '@babel/helper-module-imports': 8.0.0
+      '@babel/helper-plugin-utils': 8.0.1(@babel/core@8.1.0)
+      '@babel/plugin-syntax-jsx': 8.0.1(@babel/core@8.1.0)
+      '@babel/template': 8.0.0
+      '@babel/types': 8.1.0
+      '@vue/babel-helper-vue-transform-on': 3.0.0
+      '@vue/babel-plugin-resolve-type': 3.0.0(@babel/core@8.1.0)
+      '@vue/shared': 3.5.44
+    optionalDependencies:
+      '@babel/core': 8.1.0
+
+  '@vue/babel-plugin-resolve-type@3.0.0(@babel/core@8.1.0)':
+    dependencies:
+      '@babel/code-frame': 8.0.6
+      '@babel/core': 8.1.0
+      '@babel/helper-module-imports': 8.0.0
+      '@babel/helper-plugin-utils': 8.0.1(@babel/core@8.1.0)
+      '@babel/parser': 8.1.0
+      '@vue/compiler-sfc': 3.5.44
 
   '@vue/compiler-core@3.5.44':
     dependencies:
