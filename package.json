@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "node service/commands/dev.js",
-    "build": "node service/commands/build.js",
+    "build": "npm run type-check && node service/commands/build.js",
     "lint": "npm run lint:prettier && npm run lint:eslint && npm run lint:stylelint",
     "lint:prettier": "prettier . --write --log-level warn",
     "lint:eslint": "eslint --fix",
@@ -35,6 +35,7 @@
     "chalk": "^6.0.1",
     "copy-webpack-plugin": "^14.0.0",
     "css-loader": "^7.1.5",
+    "css-minimizer-webpack-plugin": "^8.0.0",
     "dotenv": "^18.0.9",
     "dotenv-expand": "^1000.0.0",
     "eslint": "^10.14.0",

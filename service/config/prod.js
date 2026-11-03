@@ -1,5 +1,6 @@
 import { merge } from 'webpack-merge'
 import TerserPlugin from 'terser-webpack-plugin'
+import CssMinimizerPlugin from 'css-minimizer-webpack-plugin'
 
 import baseWebpackConfig from './base.js'
 import cssWebpackConfig from './css.js'
@@ -15,7 +16,7 @@ export default merge(baseWebpackConfig, cssWebpackConfig, {
 
   optimization: {
     minimize: true,
-    minimizer: [new TerserPlugin(terserOptions())],
+    minimizer: [new TerserPlugin(terserOptions()), new CssMinimizerPlugin()],
     moduleIds: 'deterministic',
     splitChunks: {
       cacheGroups: {
