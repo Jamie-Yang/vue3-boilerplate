@@ -1,2 +1,6 @@
+overrides:
+  # GHSA-g3hv-75wg-m249: remove once ESLint and typescript-eslint adopt minimatch >=11.0.1.
+  'minimatch@10.2.6': 11.0.4
+
 onlyBuiltDependencies:
   - '@parcel/watcher'
