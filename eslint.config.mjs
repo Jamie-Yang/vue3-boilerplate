@@ -28,7 +28,11 @@ export default [
   {
     files: ['src/**/*.{js,jsx,ts,tsx,vue}'],
     languageOptions: {
-      globals: globals.browser,
+      globals: {
+        ...globals.browser,
+        // Webpack substitutes process.env values in client code.
+        process: 'readonly',
+      },
     },
   },
 
@@ -51,13 +55,13 @@ export default [
     languageOptions: {
       parser: vueParser,
       parserOptions: {
-        // Vue 模板由 vue-eslint-parser 解析，script 中的 TS 交给 TS parser。
+        // Parse Vue templates with vue-eslint-parser and scripts with the TS parser.
         parser: pluginTs.parser,
         extraFileExtensions: ['.vue'],
       },
     },
     rules: {
-      // Vue 脚本使用 TypeScript，未声明标识符由 vue-tsc 检查，与 .ts 文件保持一致。
+      // vue-tsc checks undeclared identifiers in TypeScript Vue scripts.
       'no-undef': 'off',
     },
   },
