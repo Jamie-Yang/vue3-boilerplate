@@ -9,7 +9,7 @@ export default {
   ],
   plugins: [
     '@vue/babel-plugin-jsx',
-    // 根据代码使用情况和目标浏览器，按需引入 core-js polyfill。
+    // Inject core-js polyfills based on usage and target browsers.
     [
       'babel-plugin-polyfill-corejs3',
       {
@@ -17,7 +17,7 @@ export default {
         version: '3.51',
       },
     ],
-    // 按项目声明的 runtime 版本复用辅助函数。
+    // Reuse helpers supported by the declared runtime version.
     [
       '@babel/plugin-transform-runtime',
       {
@@ -25,6 +25,6 @@ export default {
       },
     ],
   ],
-  // 仅排除依赖包，避免误匹配业务文件路径。
+  // Exclude the dependency package without matching application filenames.
   exclude: [/[\\/]node_modules[\\/]core-js[\\/]/],
 }

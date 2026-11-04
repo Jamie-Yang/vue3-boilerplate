@@ -1,7 +1,7 @@
 export default () => ({
   terserOptions: {
     compress: {
-      // 禁用以下压缩变换，减少压缩耗时。
+      // Disable these transforms to reduce minification time.
       arrows: false,
       collapse_vars: false,
       comparisons: false,
@@ -19,13 +19,13 @@ export default () => ({
       toplevel: false,
       typeofs: false,
 
-      // 启用布尔表达式、条件返回、表达式合并及未使用代码压缩。
+      // Simplify booleans, conditional returns, sequences, and unused code.
       booleans: true,
       if_return: true,
       sequences: true,
       unused: true,
 
-      // 简化条件表达式并移除不可达分支。
+      // Simplify conditions and remove unreachable branches.
       conditionals: true,
       dead_code: true,
       evaluate: true,

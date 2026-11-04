@@ -11,7 +11,7 @@ export default merge(baseWebpackConfig, cssWebpackConfig, {
   mode: 'production',
 
   output: {
-    // 随产物写出清理旧文件，编译报错时保留上一份构建结果。
+    // Clean stale files on emit and preserve previous output on compilation errors.
     clean: true,
     publicPath: config.build.publicPath,
   },

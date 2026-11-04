@@ -54,7 +54,7 @@ The `@/` import alias points to `src/`.
 - `.env` contains shared values.
 - `.env.development` and `.env.production` contain values for their respective commands.
 - `.env.local` and `.env.<mode>.local` contain local overrides and are ignored by Git.
-- Existing environment variables take precedence. File values take precedence in this order: `.env.<mode>.local`, `.env.<mode>`, `.env.local`, `.env`.
+- Existing environment variables take precedence, except for the command-controlled `NODE_ENV` and `BABEL_ENV` values described below. File values take precedence in this order: `.env.<mode>.local`, `.env.<mode>`, `.env.local`, `.env`.
 
 Variables prefixed with `VUE_APP_` are embedded in client code and can be read through `process.env.VUE_APP_*`. Do not put secrets in these variables. `NODE_ENV` and `PUBLIC_PATH` are also available in client code.
 

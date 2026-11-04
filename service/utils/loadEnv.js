@@ -2,7 +2,6 @@ import path from 'node:path'
 import dotenv from 'dotenv'
 import dotenvExpand from 'dotenv-expand'
 
-/* 合并环境文件后统一展开变量，保留 shell 中已有值的最高优先级。 */
 export default function loadEnv(mode) {
   const filenames = ['.env', '.env.local']
   if (mode) {

@@ -8,10 +8,11 @@ import { info } from '../utils/logger.js'
 import getLocalIP from '../utils/getLocalIP.js'
 
 loadEnv('development')
+// Keep Webpack, Babel, and style processing in the command's mode.
 process.env.NODE_ENV = 'development'
 process.env.BABEL_ENV = 'development'
 
-// 动态加载 Webpack 配置，确保配置读取已初始化的环境变量。
+// Load the Webpack configuration after initializing environment variables.
 const { default: devWebpackConfig } = await import('../config/dev.js')
 
 const devServerOptions = devWebpackConfig.devServer

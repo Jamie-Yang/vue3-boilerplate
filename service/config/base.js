@@ -118,7 +118,7 @@ export default {
         ],
       },
 
-      // TSX 使用独立规则，确保 Vue 中的 lang="tsx" 按 TSX 语法转译。
+      // Use a separate rule to transpile Vue lang="tsx" scripts as TSX.
       {
         test: /\.tsx$/,
         use: [

@@ -6,13 +6,13 @@ import { logWithSpinner, stopSpinner } from '../utils/spinner.js'
 
 try {
   loadEnv('production')
-  // 命令模式与 Babel、样式配置保持一致，不受外部 NODE_ENV 覆盖。
+  // Keep Webpack, Babel, and style processing in the command's mode.
   process.env.NODE_ENV = 'production'
   process.env.BABEL_ENV = 'production'
   const { default: webpackConfig } = await import('../config/prod.js')
 
   logWithSpinner('Building for production...\n')
-  // Webpack 的回调 API 会在返回结果前关闭 compiler。
+  // The Webpack callback API closes the compiler before returning results.
   const stats = await new Promise((resolve, reject) => {
     webpack(webpackConfig, (err, result) => {
       if (err) reject(err)
