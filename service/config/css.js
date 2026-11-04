@@ -19,18 +19,10 @@ const genStyleRules = () => {
   const cssLoader = {
     loader: 'css-loader',
     options: {
-      // how many loaders before css-loader should be applied to [@import]ed resources.
+      // Apply these loaders to @import resources as well.
       // stylePostLoader injected by vue-loader + postcss-loader
       importLoaders: 1 + 1,
-      modules: {
-        /* 同时识别独立 CSS Modules 文件和 Vue 的 <style module> 请求。 */
-        auto: (resourcePath, resourceQuery) =>
-          /\.modules?\.\w+$/i.test(resourcePath) ||
-          new URLSearchParams(resourceQuery).has('module'),
-        // 类名映射通过默认导出提供给 Vue 和开发时的样式注入 loader。
-        namedExport: false,
-        exportLocalsConvention: 'as-is',
-      },
+      modules: false,
     },
   }
   const postcssLoader = {
